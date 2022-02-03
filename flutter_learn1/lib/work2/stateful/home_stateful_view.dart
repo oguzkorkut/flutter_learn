@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_learn1/work2/core/component/opacity/image_opacity.dart';
 import 'package:flutter_learn1/work2/core/enums/duration_enum.dart';
 import 'package:flutter_learn1/work2/core/image_manager.dart';
 
@@ -52,11 +53,18 @@ class _HomeViewStatefullState extends State<HomeViewStatefull> {
           children: [
             _isLoading ? CircularProgressIndicator() : FlutterLogo(),
             // Image.network(imageManager.randomImage),
-            AnimatedOpacity(
-              opacity: _isLoading ? 0 : 1,
-              duration: DurationEnums.NORMAL.time,
-              child: Image.network(imageManager.randomImage),
-            ),
+            ImageOpacity(url: imageManager.randomImage),
+            Card(
+              child: ListTile(
+                leading: CircleAvatar(
+                  backgroundImage: NetworkImage(imageManager.randomImage),
+                ),
+                title: Text('data'),
+                subtitle: Text('description'),
+                trailing: Icon(Icons.arrow_right_rounded),
+                onTap: () {},
+              ),
+            )
           ],
         ));
   }
