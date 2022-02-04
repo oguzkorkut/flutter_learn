@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_learn1/work2/core/component/card/user_card.dart';
 import 'package:flutter_learn1/work2/core/component/opacity/image_opacity.dart';
 import 'package:flutter_learn1/work2/core/enums/duration_enum.dart';
 import 'package:flutter_learn1/work2/core/image_manager.dart';
+import 'package:flutter_learn1/work2/stateful/model/user.dart';
+import 'package:flutter_learn1/work2/stateless/home_detail_stateless.dart';
 
 // aksiyon olan işlemler vardır
 
@@ -18,6 +21,8 @@ class _HomeViewStatefullState extends State<HomeViewStatefull> {
   // final ImageManager imageManager; // nesnenin oluşacağını bildirmek için late yapılmalı
   late ImageManager imageManager;
 
+  late User user;
+
   // ilk çalışan anda girilir. Sayfa yüklendiğinde yapılacak işler yapılır
   @override
   void initState() {
@@ -26,6 +31,8 @@ class _HomeViewStatefullState extends State<HomeViewStatefull> {
     waitForLoading();
 
     imageManager = ImageManager();
+
+    user = User.fakeItem();
   }
 
   Future<void> waitForLoading() async {
@@ -54,18 +61,19 @@ class _HomeViewStatefullState extends State<HomeViewStatefull> {
             _isLoading ? CircularProgressIndicator() : FlutterLogo(),
             // Image.network(imageManager.randomImage),
             ImageOpacity(url: imageManager.randomImage),
-            Card(
-              child: ListTile(
-                leading: CircleAvatar(
-                  backgroundImage: NetworkImage(imageManager.randomImage),
-                ),
-                title: Text('data'),
-                subtitle: Text('description'),
-                trailing: Icon(Icons.arrow_right_rounded),
-                onTap: () {},
-              ),
+            UserCard(
+              user: user,
+              onPressed: () {
+                _navigateDetail();
+              },
             )
           ],
         ));
+  }
+
+  void _navigateDetail() {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => HomeDetailStateless(model: user),
+    ));
   }
 }
