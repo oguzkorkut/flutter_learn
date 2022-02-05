@@ -21,7 +21,7 @@ class FoodCardView extends FoodCardViewModel {
                     Center(child: Text(ApplicationStrings.instance.checkOut)),
                 onPressed: () {},
                 style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Theme.of(context).accentColor),
+                    backgroundColor: MaterialStateProperty.all(Theme.of(context).colorScheme.secondary),
                     shape: MaterialStateProperty.all(StadiumBorder())),
               )),
         ],
