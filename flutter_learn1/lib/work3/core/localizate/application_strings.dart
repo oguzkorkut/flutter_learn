@@ -8,6 +8,7 @@ class ApplicationStrings {
 
   ApplicationStrings._init();
 
+  final String foodDashBoard = 'Food Dashboard';
   final String cartTitle = 'Cart';
   final String checkOut = 'Checkout';
 

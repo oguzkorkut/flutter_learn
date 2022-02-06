@@ -17,14 +17,20 @@ class LightTheme extends ITheme {
 
   @override
   ThemeData get data => ThemeData(
-      appBarTheme:
-          _lightTheme.appBarTheme.copyWith(backgroundColor: Colors.white),
+      appBarTheme: _lightTheme.appBarTheme.copyWith(
+        backgroundColor: Colors.white,
+        toolbarTextStyle:
+            _lightTheme.textTheme.apply(bodyColor: colors.lynch).bodyText2,
+        titleTextStyle:
+            _lightTheme.textTheme.apply(bodyColor: colors.lynch).headline6,
+      ),
       // textTheme: TextTheme
+      textTheme: _lightTheme.textTheme.apply(bodyColor: colors.lynch),
       colorScheme: _lightTheme.colorScheme.copyWith(
-        primary: Colors.white,
-        onPrimary: colors.lynch,
-        secondary: Colors.green
-      ));
+          primary: Colors.white,
+          onPrimary: colors.lynch,
+          onSecondary: colors.catSkillWhite,
+          secondary: Colors.green));
 }
 
 
